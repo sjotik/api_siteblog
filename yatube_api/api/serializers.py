@@ -1,5 +1,6 @@
-from posts.models import Comment, Group, Post
 from rest_framework import serializers
+
+from posts.models import Comment, Group, Post
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -10,6 +11,8 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
+        # не указывал __all__, т.к. прописал порядок вывода полей
+        # согласно примера вывода в задании. В meta comment тоже.
         fields = ('id', 'text', 'author', 'image', 'group', 'pub_date',)
 
 
@@ -25,9 +28,8 @@ class CommentSerializer(serializers.ModelSerializer):
         slug_field='username',
         read_only=True,
         default=serializers.CurrentUserDefault())
-    post = serializers.SlugRelatedField(
-        read_only=True, slug_field='pk')
 
     class Meta:
         model = Comment
         fields = ('id', 'author', 'post', 'text', 'created')
+        read_only_fields = ('author', 'post')
