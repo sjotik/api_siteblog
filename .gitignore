@@ -104,14 +104,11 @@ celerybeat.pid
 # Environments
 .env
 .venv
-.idea/
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
-.DS_Store
-.vscode/
 
 # Spyder project settings
 .spyderproject
@@ -130,3 +127,24 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Папки, создаваемые средой разработки
+.idea
+.DS_Store
+.AppleDouble
+.LSOverride
+
+*.sublime-project
+*.sublime-workspace
+
+.vscode/
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+.mypy_cache
+
+# папки со статикой и медиа
+media/
+yatube_api/posts/static/

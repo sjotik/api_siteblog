@@ -1,22 +1,14 @@
-import os
-from distutils.util import strtobool
 from pathlib import Path
 
-from dotenv import load_dotenv
-
-
-load_dotenv()
+from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'secret01')
+SECRET_KEY = 'hhz7l-ltdismtf@bzyz+rple7*s*w$jak%whj@(@u0eok^f9k4'
 
-DEBUG = bool(strtobool(os.getenv('DEBUG', 'False')))
+DEBUG = True
 
-ALLOWED_HOSTS = (os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1')).split(',')
-
-
-# Application definition
+ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -26,9 +18,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework.authtoken',
-    'posts.apps.PostsConfig',
-    'api.apps.ApiConfig',
+    'django_filters',
+    'djoser',
+    'api',
+    'posts',
 ]
 
 MIDDLEWARE = [
@@ -42,7 +35,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'yatube_api.urls'
+
 TEMPLATES_DIR = BASE_DIR / 'templates'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -62,8 +57,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'yatube_api.wsgi.application'
 
 
-# Database
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -71,25 +64,13 @@ DATABASES = {
     }
 }
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ]
-}
-
-# Password validation
-
 AUTH_PASSWORD_VALIDATORS = [
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    # },
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
@@ -98,9 +79,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
-
-LANGUAGE_CODE = 'ru-RU'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -110,10 +89,24 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-
 STATIC_URL = '/static/'
+STATICFILES_DIRS = ((BASE_DIR / 'static/'),)
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=10),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+POSTS_COUNT: int = 10
+LEN_LIMIT: int = 15
