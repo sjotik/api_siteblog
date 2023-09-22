@@ -1,6 +1,17 @@
-# API Yatube
-## _API service for Yatube blog_
-________________________________
+![License](https://img.shields.io/github/license/sjotik/ya_tube.svg?style=for-the-badge) ![Repo Size](https://img.shields.io/github/languages/code-size/sjotik/ya_tube.svg?style=for-the-badge) ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/sjotik/api_siteblog.svg?style=for-the-badge)
+
+
+<br/>
+<p align="center">
+  <!--
+  <a href="https://github.com/sjotik/ya_tube">
+    <img src="yatube/static/img/logo.png" alt="Logo" width="80" height="80">
+  </a>
+  -->
+
+  <h1 align="center">API Yatube</h1>
+  <h3 align="center"><i>API for <a href="https://github.com/sjotik/ya_tube">site-blog</a></i></h3>
+</p>
 
 ## Features
 
@@ -19,7 +30,7 @@ ________________________________
 - Clone the Repo
 
 ```sh
-git@github.com:sjotik/api_final_yatube.git
+git@github.com:sjotik/api_siteblog.git
 ```
 
 - Create and activate VENV (Linux/Mac)
