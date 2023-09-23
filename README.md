@@ -57,4 +57,7 @@ python3 namage.py migrate
 python3 manage.py runserver
 ```
 
+## API Documentation
+When server is run API documentation available on host http://127.0.0.1:8000/redoc/
+
 ### ENJOY! ###
